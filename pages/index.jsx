@@ -1,23 +1,42 @@
+/* Copyright (C) 2021 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+ * SPDX-License-Identifier: MIT
+ */
+
 import Head from 'next/head'
 
-import Meta from '../components/meta'
-import Header from '../components/header'
-import Footer from '../components/footer'
-import Nav from '../components/nav'
+import Footer from '@components/Footer'
+import Meta from '@components/Meta'
+import Header from '@components/Header'
+import Recent from '@components/Recent'
 
-export default function Index () {
+import { getAllPosts } from '@api'
+
+const TITLE = '*Aeosri*'
+
+export default function Index (props) {
   return (
-      <>
-        <Meta />
-        <Head>
-          <title>*Aeosri* — 'nuff said</title>
-        </Head>
+    <>
+      <Meta />
+      <Head>
+        <title>{TITLE}</title>
+      </Head>
 
-        <Header />
-        <main>
-          <Nav />
-        </main>
-        <Footer />
-      </>
+      <Header />
+
+      <p>Recently published articles:</p>
+      <Recent posts={props.posts} />
+
+      <Footer />
+    </>
   )
+}
+
+export async function getStaticProps () {
+  const posts = await getAllPosts()
+
+  return {
+    props: {
+      posts: posts
+    }
+  }
 }

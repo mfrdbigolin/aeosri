@@ -1,18 +1,19 @@
 {
   "name": "Aeosri",
-  "version": "1.0.0",
-  "description": "Personal website",
-  "main": "index.js",
-  "author": "mfrdbigolin",
+  "version": "1.0.1",
   "license": "MIT",
-  "private": true,
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev -p 3325"
   },
   "dependencies": {
-    "next": "^10.0.5",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "gray-matter": "^4.0.2",
+    "next": "^10.0.7",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "tailwindcss": "^2.0.2"
-  }
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {}
 }

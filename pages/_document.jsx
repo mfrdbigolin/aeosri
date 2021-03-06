@@ -1,3 +1,7 @@
+/* Copyright (C) 2021 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+ * SPDX-License-Identifier: MIT
+ */
+
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document {
