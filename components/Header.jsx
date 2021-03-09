@@ -14,7 +14,7 @@ export default function Header () {
     <header>
       <div>
         <Image
-          src='/assets/placeholder.svg'
+          src='/static/placeholder.svg'
           alt='Logo'
           width={450}
           height={300}
