@@ -25,15 +25,13 @@ The preferable format for the HTML files is:
 <!-- Frontmatter fields.  -->
 ---
 
-<div id="content">
-  <p>
-    <!-- Content.  -->
-  </p>
+<p>
+  <!-- Content.  -->
+</p>
 
-  <!--
-    Plus ultra...
-    -->
-</div>
+<!--
+  Plus ultra...
+-->
 ```
 
 ### Frontmatter Required Fields

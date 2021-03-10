@@ -32,7 +32,10 @@ export default function Article (props) {
 
       <article>
         <h1>{props.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: props.content }} />
+        <section
+          id='content'
+          dangerouslySetInnerHTML={{ __html: props.content }}
+        />
       </article>
 
       <Footer />
