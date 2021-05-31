@@ -9,23 +9,23 @@ import matter from 'gray-matter'
 export async function getAllPosts () {
   const posts = []
 
-  readdirSync('./_html/').forEach(postSlug => {
-    const post = readFileSync(`./_html/${postSlug}`, 'utf8')
+  readdirSync('./_html/').forEach(slug => {
+    const post = readFileSync(`./_html/${slug}`, 'utf8')
     const filt = matter(post)
 
-    // I don't think it is necessary to export everything.
-    posts.push(filt.data)
+    posts.push({ ...filt.data, slug: slug.match(/.+(?=[.]\w*)\b/)[0] })
   })
 
   return posts
 }
 
 export async function getPost (slug) {
-  const file = readFileSync(`./_html/${slug}.html`, 'utf8')
-  const filt = matter(file)
+  const post = readFileSync(`./_html/${slug}.html`, 'utf8')
+  const filt = matter(post)
 
   return {
     ...filt.data,
+    slug,
     content: filt.content
   }
 }

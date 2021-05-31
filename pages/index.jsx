@@ -5,9 +5,11 @@
 import Head from 'next/head'
 
 import Footer from '@components/Footer'
-import Meta from '@components/Meta'
 import Header from '@components/Header'
 import Recent from '@components/Recent'
+import ColorSwitch from '@components/ColorSwitch'
+
+import { Center, Divider, Heading, Wrap } from '@chakra-ui/react'
 
 import { getAllPosts } from '@api'
 
@@ -16,15 +18,26 @@ const TITLE = '*Aeosri*'
 export default function Index (props) {
   return (
     <>
-      <Meta />
       <Head>
         <title>{TITLE}</title>
       </Head>
 
+      <Wrap align='center'>
+        <ColorSwitch />
+      </Wrap>
+
       <Header />
 
-      <p>Recently published articles:</p>
-      <Recent posts={props.posts} />
+      <Divider />
+
+      <Center>
+        <Heading as='h2' size='md'>Recently published</Heading>
+      </Center>
+      <Center>
+        <Recent posts={props.posts} />
+      </Center>
+
+      <Divider />
 
       <Footer />
     </>

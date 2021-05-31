@@ -2,32 +2,44 @@
  * SPDX-License-Identifier: MIT
  */
 
+// TODO: Because this component is only used in the main page, I don't
+// think it should be on this folder (/components).
+
 import Image from 'next/image'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { Heading, Link, Text, Center } from '@chakra-ui/react'
 
 library.add(fab)
 
 export default function Header () {
   return (
     <header>
-      <div>
+      <Center>
         <Image
           src='/static/placeholder.svg'
-          alt='Logo'
-          width={450}
-          height={300}
+          alt='Aeosri Logo'
+          width='450'
+          height='300'
         />
-      </div>
+      </Center>
 
-      <h1>[ A E O S R I ]
-        <a href='https://github.com/mfrdbigolin/aeosri'>
-          <FontAwesomeIcon icon={['fab', 'git-alt']} />
-        </a>
-      </h1>
+      <Center mb='0.75rem' mt='1.5rem'>
+        <Heading as='h1' size='xl' letterSpacing={10}>
+          [AEOSRI]
+          <Link href='https://github.com/mfrdbigolin/aeosri'>
+            <FontAwesomeIcon icon={['fab', 'git-alt']} />
+          </Link>
+        </Heading>
+      </Center>
 
-      <p>Welcome to Aeosri!</p>
+      <Center>
+        <Text fontStyle='italic' fontSize='xl' mb='1em'>
+          Welcome to Aeosri!
+        </Text>
+      </Center>
     </header>
   )
 }

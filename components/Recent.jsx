@@ -3,21 +3,40 @@
  */
 
 import Link from 'next/link'
+import {
+  Link as ChkLink, UnorderedList, ListItem, Badge, HStack, Box
+} from '@chakra-ui/react'
 
-export default function Recent (props) {
+export default function Recent ({ posts, numPosts = 5 }) {
   return (
     <>
-      <ul>
-        {props.posts.map(function (post, idx) {
-          return (
-            <li key={idx}>
-              <Link href={'/' + post.slug}>
-                <a>{post.title}</a>
-              </Link>
-            </li>
-          )
-        })}
-      </ul>
+      <UnorderedList colorScheme='red'>
+        {
+          posts.map(function (post, idx) {
+            const date = new Date(post.date)
+            const diff = Date.now() - date.getTime()
+            const daysElapsed = Math.floor(diff / (1000 * 60 * 60 * 24))
+
+            return (
+              <ListItem key={idx} mb='1rem'>
+                <HStack spacing='20px'>
+                  <Box>
+                    <Link href={'/' + post.slug}>
+                      <ChkLink>{post.title}</ChkLink>
+                    </Link>
+                  </Box>
+
+                  <Box>
+                    <Badge variant='subtle'>
+                      {daysElapsed} day(s) ago
+                    </Badge>
+                  </Box>
+                </HStack>
+              </ListItem>
+            )
+          })
+        }
+      </UnorderedList>
     </>
   )
 }

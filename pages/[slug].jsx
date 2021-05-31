@@ -7,8 +7,9 @@ import Head from 'next/head'
 
 import Footer from '@components/Footer'
 
-// TODO: also include an ID system.
+import { Heading, Text, Divider, Center, VStack, Box } from '@chakra-ui/react'
 
+// TODO: also include an ID system.
 export default function Article (props) {
   const date = new Date(props.date)
   const formattedDate =
@@ -17,26 +18,58 @@ export default function Article (props) {
   return (
     <>
       <Head>
-        <title>{props.title}</title>
+        <title>{props.slug}.org ⊙ Aeosri</title>
+
+        {/* MathJax */}
+        <script src='https://polyfill.io/v3/polyfill.min.js?features=es6' />
+        <script
+          id='MathJax-script' async
+          src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+        />
+
+        {/* Prism */}
+        <link href='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-funky.css' rel='stylesheet' />
+        <script src='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js' />
+        <script src='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js' />
+
+        {/* Prism, Unescaped Markup */}
+        <link href='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/unescaped-markup/prism-unescaped-markup.css' rel='stylesheet' />
+        <script src='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/unescaped-markup/prism-unescaped-markup.min.js' />
+
+        {/* Prism, Normalize Whitespace */}
+        <script src='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js' />
       </Head>
 
-      <p><em>{props.description}</em></p>
+      <VStack mb='1em' align='stretch'>
+        <Text>
+          <time dateTime={date}>
+            {formattedDate}
+          </time>
+        </Text>
 
-      <p>
-        <time dateTime={date}>
-          {formattedDate}
-        </time>
-      </p>
+        <Text textStyle='italic'>{props.description}</Text>
 
-      <p><strong>{props.tags}</strong></p>
+        <Text textStyle='bold'>{props.tags}</Text>
+      </VStack>
 
       <article>
-        <h1>{props.title}</h1>
-        <section
+        <Center>
+          <Heading as='h1' mt='1.5em' mb='0.8em' fontSize='2rem'>
+            {props.title}
+          </Heading>
+        </Center>
+
+        <Box
+          as='section'
+          w='90%'
+          maxW='600px'
+          m='0 auto 1.5em auto'
           id='content'
           dangerouslySetInnerHTML={{ __html: props.content }}
         />
       </article>
+
+      <Divider mt='3' mb='3' />
 
       <Footer />
     </>

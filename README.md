@@ -22,32 +22,26 @@ The preferable format for the HTML files is:
 
 ```html
 ---
-<!-- Frontmatter fields.  -->
+<!-- Frontmatter fields. -->
 ---
 
-<p>
-  <!-- Content.  -->
-</p>
+<p><!-- Content. --></p>
 
-<!--
-  Plus ultra...
--->
+<!-- Plus ultra... -->
 ```
 
 ### Frontmatter Required Fields
 
 As of now, the required frontmatter fields are:
 
-1. `slug`: location of the slug.
+1. `title`: title to be exhibited upon loading of the page.
 
-2. `title`: title to be exhibited upon loading of the page.
-
-3.  `date`:  date to be  shown on the  page, use the  format `<`*`year`*`>`
+2.  `date`:  date to be  shown on the  page, use the  format `<`*`year`*`>`
     `<`*`month`*`>` `<`*`day`*`>`, e.g. `2021 03 06`.
 
-4. `description`: a brief description of the page's contents.
+3. `description`: a brief description of the page's contents.
 
-5. `tags`: relevant tags, used for  sorting and organization along with the
+4. `tags`: relevant tags, used for  sorting and organization along with the
    slug path.
 
 ## Licensing

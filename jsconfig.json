@@ -5,7 +5,8 @@
       "@includes/*": ["_includes/*"],
       "@layouts/*": ["_layouts/*"],
       "@api": ["api/index"],
-      "@components/*": ["components/*"]
+      "@components/*": ["components/*"],
+      "@styles/*": ["styles/*"]
     }
   }
 }
