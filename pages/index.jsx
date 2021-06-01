@@ -20,6 +20,11 @@ export default function Index (props) {
     <>
       <Head>
         <title>{TITLE}</title>
+
+        <meta
+          name='description'
+          content='Aeosri is the place where my thoughts are poured.'
+        />
       </Head>
 
       <Wrap align='center'>

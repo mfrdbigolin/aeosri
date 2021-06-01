@@ -20,6 +20,11 @@ export default function Article (props) {
       <Head>
         <title>{props.slug}.org ⊙ Aeosri</title>
 
+        <meta
+          name='description'
+          content={props.description + ' ⊙ Aeosri'}
+        />
+
         {/* MathJax */}
         <script src='https://polyfill.io/v3/polyfill.min.js?features=es6' />
         <script

@@ -4,8 +4,6 @@
 
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-import Meta from '@components/Meta'
-
 import { ColorModeScript } from '@chakra-ui/react'
 
 import theme from '@styles/theme'
@@ -22,7 +20,7 @@ export default class MyDocument extends Document {
         <Head>
           <link rel='icon' type='image/svg+xml' href='/static/favicon.svg' />
         </Head>
-        <Meta />
+
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
