@@ -4,10 +4,11 @@
 
 import { getPost, getAllPosts } from '@api'
 import Head from 'next/head'
+import Image from 'next/image'
 
 import Footer from '@components/Footer'
 
-import { Heading, Text, Divider, Center, VStack, Box } from '@chakra-ui/react'
+import { Heading, Text, Divider, Center, VStack, SimpleGrid, Box, Link } from '@chakra-ui/react'
 
 // TODO: also include an ID system.
 export default function Article (props) {
@@ -45,17 +46,29 @@ export default function Article (props) {
         <script src='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js' />
       </Head>
 
-      <VStack mb='1em' align='stretch'>
-        <Text>
-          <time dateTime={date}>
-            {formattedDate}
-          </time>
-        </Text>
+      <SimpleGrid minChildWidth='120px' spacing='40px'>
+        <VStack mb='1em' align='stretch'>
+          <Text>
+            <time dateTime={date}>
+              {formattedDate}
+            </time>
+          </Text>
 
-        <Text textStyle='italic'>{props.description}</Text>
+          <Text textStyle='italic'>{props.description}</Text>
 
-        <Text textStyle='bold'>{props.tags}</Text>
-      </VStack>
+          <Text textStyle='bold'>{props.tags}</Text>
+        </VStack>
+
+        <Center>
+          <Link href='/'>
+            <Image
+              src='/static/placeholder.svg'
+              width='60'
+              height='40'
+            />
+          </Link>
+        </Center>
+      </SimpleGrid>
 
       <article>
         <Center>
