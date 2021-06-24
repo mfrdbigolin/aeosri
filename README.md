@@ -5,6 +5,8 @@
 
 # *Aeosri*: Personal Website [![Public license](https://img.shields.io/badge/MIT_(Expat)-yellow?logo=spdx&logoColor=white)](./LICENSE)
 
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
 My        personal        website,        currently        hosted        at
 [Aeosri](https://aeosri.vercel.app)  by  Vercel.    Built  with  React  and
 Next.js.
