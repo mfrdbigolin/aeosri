@@ -1,42 +1,38 @@
-/* Copyright (C) 2021 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+/* Copyright (C) 2021, 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
  * SPDX-License-Identifier: MIT
  */
 
+import styles from '@components/recent.module.sass'
+import { differenceInDays } from 'date-fns'
 import Link from 'next/link'
-import {
-  Link as ChkLink, UnorderedList, ListItem, Badge, HStack, Box
-} from '@chakra-ui/react'
 
-export default function Recent ({ posts, numPosts = 5 }) {
+export default function Recent ({ articles, numArticles = 5 }) {
+  const feed = articles.slice(0, numArticles)
+
   return (
-    <>
-      <UnorderedList colorScheme='red'>
+    <nav>
+      <ul className={styles.feed}>
         {
-          posts.map(function (post, idx) {
-            const date = new Date(post.date)
-            const diff = Date.now() - date.getTime()
-            const daysElapsed = Math.floor(diff / (1000 * 60 * 60 * 24))
+          feed.map(function (article, i) {
+            const publDate = new Date(article.publDate)
+            const daysElapsed = differenceInDays(new Date(), publDate)
 
             return (
-              <ListItem key={idx} mb='1rem'>
-                <HStack spacing='20px'>
-                  <Box>
-                    <Link href={'/' + post.slug}>
-                      <ChkLink>{post.title}</ChkLink>
-                    </Link>
-                  </Box>
+              <li className={styles.post} key={i}>
+                <Link href={`/${article.slug}`}>
+                  <a>{article.title}</a>
+                </Link>
 
-                  <Box>
-                    <Badge variant='subtle'>
-                      {daysElapsed} day(s) ago
-                    </Badge>
-                  </Box>
-                </HStack>
-              </ListItem>
+                <span className={styles.dayBadge}>
+                  {daysElapsed <= 1
+                    ? ['Today', 'Yesterday'][daysElapsed]
+                    : `${daysElapsed} days ago`}
+                </span>
+              </li>
             )
           })
         }
-      </UnorderedList>
-    </>
+      </ul>
+    </nav>
   )
 }

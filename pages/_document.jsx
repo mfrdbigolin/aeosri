@@ -1,14 +1,10 @@
-/* Copyright (C) 2021 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+/* Copyright (C) 2021, 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
  * SPDX-License-Identifier: MIT
  */
 
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Head, Html, Main, NextScript } from 'next/document'
 
-import { ColorModeScript } from '@chakra-ui/react'
-
-import theme from '@styles/theme'
-
-export default class MyDocument extends Document {
+export default class Aeosri extends Document {
   static async getInitialProps (ctx) {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
@@ -19,12 +15,22 @@ export default class MyDocument extends Document {
       <Html lang='en'>
         <Head>
           <link rel='icon' type='image/svg+xml' href='/static/favicon.svg' />
+
+          {/* KaTeX */}
+          <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css' integrity='sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn' crossOrigin='anonymous' />
+
+          <link rel='preconnect' href='https://fonts.googleapis.com' />
+          <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='true' />
+          <link href='https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&family=Source+Code+Pro:wght@500&display=swap' rel='stylesheet' />
         </Head>
 
         <body>
-          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
+
+          {/* Ionicons */}
+          <script type='module' src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js' defer />
+          <script noModule src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js' defer />
         </body>
       </Html>
     )

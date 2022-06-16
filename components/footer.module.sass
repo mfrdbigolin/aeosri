@@ -1,0 +1,35 @@
+/* Copyright (C) 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+ * SPDX-License-Identifier: MIT
+ */
+
+@import "styles/variables"
+
+.footer
+  padding-bottom: 18px
+
+  *
+    display: flex
+    justify-content: center
+
+.copyright
+  font-size: 0.8rem
+  margin-bottom: 0.3rem
+
+.license
+  margin-bottom: 0.5rem
+
+  a
+    background-image: url("https://img.shields.io/badge/BY--NC--SA_4.0-#{str-slice(ie-hex-str($link-color), 4)}?logo=creative-commons&style=flat&logoColor=#{str-slice(ie-hex-str($background-color), 4)}")
+    width: 105px
+    height: 20px
+
+    &:hover
+      background-image: url("https://img.shields.io/badge/BY--NC--SA_4.0-#{str-slice(ie-hex-str($link-hover), 4)}?logo=creative-commons&style=flat&logoColor=#{str-slice(ie-hex-str($background-color), 4)}")
+
+.icon
+  display: flex
+  margin-inline-start: 1em
+  margin-inline-end: 1em
+
+  ion-icon
+    font-size: 1.1rem

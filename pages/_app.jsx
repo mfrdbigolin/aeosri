@@ -1,10 +1,9 @@
-/* Copyright (C) 2021 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+/* Copyright (C) 2021, 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
  * SPDX-License-Identifier: MIT
  */
 
+import '@styles/styles.sass'
 import Head from 'next/head'
-import { ChakraProvider } from '@chakra-ui/react'
-import theme from '@styles/theme'
 
 export default function Aeosri ({ Component, pageProps }) {
   return (
@@ -12,10 +11,11 @@ export default function Aeosri ({ Component, pageProps }) {
       <Head>
         <meta charSet='utf-8' />
 
-        <meta name='application-name' content='Aeosri' />
+        <meta name='application-name' content='ÆOSRI' />
         <meta name='author' content='Matheus Fernandes Bigolin' />
-        <meta name='theme-color' content='#A510E5' />
-        <meta name='color-scheme' content='dark light' />
+        {/* International Aerospace Orange */}
+        <meta name='theme-color' content='#FF4F00' />
+        <meta name='color-scheme' content='light' />
 
         <meta
           name='viewport'
@@ -23,9 +23,7 @@ export default function Aeosri ({ Component, pageProps }) {
         />
       </Head>
 
-      <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <Component {...pageProps} />
     </>
   )
 }

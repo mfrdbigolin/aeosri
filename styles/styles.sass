@@ -1,0 +1,114 @@
+/* Copyright (C) 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+ * SPDX-License-Identifier: MIT
+ */
+
+@import "styles/variables"
+
+html
+  box-sizing: border-box
+
+*,
+*:before,
+*:after
+  box-sizing: inherit
+  margin: 0
+  padding: 0
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+
+body
+  font-family: Fira Sans,Noto Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif
+  -webkit-font-smoothing: antialiased
+
+  min-height: 100vh
+  margin: 0 auto
+
+  max-width: 680px
+  min-width: 360px
+
+  color: $text-color
+  background-color: $background-color
+
+video, audio, img
+  display: block
+  margin: 0 auto
+  width: 80%
+  border-radius: $roundness
+
+h1
+  font-weight: 700
+  font-size: 2.5rem
+
+h2
+  font-weight: 600
+  font-size: 1.75rem
+
+p
+  font-size: 1rem
+
+a
+  color: $link-color
+  font-weight: bold
+
+  &:visited
+    color: $link-visited
+
+  &:hover
+    color: $link-hover
+    text-decoration: wavy
+
+code
+  font-family: Source Code Pro, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace
+  // Solarized Light background color.
+  background-color: #fdf6e3
+
+pre > code
+  display: grid
+  border-radius: $roundness
+  padding: 1em
+  line-height: 1.3em
+
+  counter-reset: line
+
+pre > code > span:before
+    counter-increment: line
+    content: counter(line)
+    // Other styling
+    display: inline-block
+    width: 1rem
+    margin-right: 2rem
+    text-align: right
+    color: $secondary-color
+
+ion-icon
+  pointer-events: none
+
+table, th, td
+  padding: 8px
+
+table
+  max-width: 80%
+  margin: 0 auto 20px
+  overflow-x: auto
+  font-size: 0.8rem
+  border-collapse: collapse
+  white-space: normal
+
+th
+  border-inline: 3px solid $background-color
+  border-top-left-radius: $roundness
+  border-top-right-radius: $roundness
+
+td
+  border-inline: 3px solid $text-color
+  border-block: 1px solid $text-color
+
+tbody
+  border: 4px solid $text-color
+
+th, td
+  text-align: center
+
+thead, tfoot
+  background-color: $text-color
+  color: $background-color

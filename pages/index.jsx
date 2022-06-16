@@ -1,60 +1,77 @@
-/* Copyright (C) 2021 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+/* Copyright (C) 2021, 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
  * SPDX-License-Identifier: MIT
  */
 
-import Head from 'next/head'
-
+import Divider from '@components/Divider'
 import Footer from '@components/Footer'
-import Header from '@components/Header'
+import styles from '@components/index.module.sass'
 import Recent from '@components/Recent'
-import ColorSwitch from '@components/ColorSwitch'
+import { getAllArticles } from '@db/articles'
+import Head from 'next/head'
+import Image from 'next/image'
 
-import { Center, Divider, Heading, Wrap } from '@chakra-ui/react'
+const NUMBER_RECENT_ARTICLES = 4
 
-import { getAllPosts } from '@api'
-
-const TITLE = '*Aeosri*'
-
-export default function Index (props) {
+export default function Aeosri ({ articles }) {
   return (
     <>
       <Head>
-        <title>{TITLE}</title>
+        <title>[ÆOSRI]</title>
 
         <meta
           name='description'
-          content='Aeosri is the place where my thoughts are poured.'
+          content='ÆOSRI is the place where my thoughts are poured.'
         />
       </Head>
 
-      <Wrap align='center'>
-        <ColorSwitch />
-      </Wrap>
+      <div className={styles.wrapper}>
+        <header className={styles.header}>
+          <section title='Just a temporary logo' className={styles.logo}>
+            <Image
+              src='/static/placeholder.svg'
+              alt='ÆOSRI logo'
+              width='360'
+              height='240'
+            />
+          </section>
 
-      <Header />
+          <h1>
+            ⟦ÆOSRI⟧
 
-      <Divider />
+            <a title='mfrdbigolin/aeosri' href='https://github.com/mfrdbigolin/aeosri'>
+              <ion-icon size='large' name='git-branch' />
+            </a>
+          </h1>
 
-      <Center>
-        <Heading as='h2' size='md'>Recently published</Heading>
-      </Center>
-      <Center>
-        <Recent posts={props.posts} />
-      </Center>
+          <p>Welcome to ÆOSRI!</p>
+        </header>
 
-      <Divider />
+        <Divider color={styles.textColor} />
 
-      <Footer />
+        <section className={styles.recent}>
+          <h2>Recently published</h2>
+
+          <Recent articles={articles} numArticles={NUMBER_RECENT_ARTICLES} />
+        </section>
+
+        <Divider color={styles.textColor} />
+
+        <Footer />
+      </div>
     </>
   )
 }
 
 export async function getStaticProps () {
-  const posts = await getAllPosts()
+  const articles = await getAllArticles()
+  // Stringify the publication Date to satisfy Next.js’s distaste for objects.
+  const JSONArticles = articles.map(({ publDate, ...rest }) => {
+    return { publDate: publDate.toJSON(), ...rest }
+  })
 
   return {
     props: {
-      posts: posts
+      articles: JSONArticles
     }
   }
 }

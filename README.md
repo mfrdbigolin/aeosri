@@ -1,50 +1,27 @@
 <!--
-  - Copyright (C) 2021 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+  - Copyright (C) 2021, 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
   - SPDX-License-Identifier: MIT
   -->
 
-# *Aeosri*: Personal Website [![Public license](https://img.shields.io/badge/MIT_(Expat)-yellow?logo=spdx&logoColor=white)](./LICENSE)
+# *ÆOSRI*: My Own Personal Website [![Public license](https://img.shields.io/badge/MIT_(Expat)-yellow?logo=spdx&logoColor=white)](./LICENSE)
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
 My        personal        website,        currently        hosted        at
-[Aeosri](https://aeosri.vercel.app)  by  Vercel.    Built  with  React  and
+[ÆOSRI](https://aeosri.vercel.app)   by  Vercel.    Built  with  React  and
 Next.js.
 
 ## Usage Notes
 
 Use `yarn dev` to start a local server.
 
-### HTML
+Make sure to include the following enviroment variables in your `.env`:
 
-* `_html`: stores  the HTML content of the website,  a frontmatter with the
-  required fields (vide infra) is needed at the top of each file.
+* `HOOK_SECRET`: a secret to authorize the webhook operation.
 
-The preferable format for the HTML files is:
+* `CMS_URL`: the url to your CMS (preferably Strapi).
 
-```html
----
-<!-- Frontmatter fields. -->
----
-
-<p><!-- Content. --></p>
-
-<!-- Plus ultra... -->
-```
-
-### Frontmatter Required Fields
-
-As of now, the required frontmatter fields are:
-
-1. `title`: title to be exhibited upon loading of the page.
-
-2.  `date`:  date to be  shown on the  page, use the  format `<`*`year`*`>`
-    `<`*`month`*`>` `<`*`day`*`>`, e.g. `2021 03 06`.
-
-3. `description`: a brief description of the page's contents.
-
-4. `tags`: relevant tags, used for  sorting and organization along with the
-   slug path.
+* `DATABASE_URL`: the url to your Postgres database.
 
 ## Licensing
 

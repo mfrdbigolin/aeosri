@@ -1,114 +1,109 @@
-/* Copyright (C) 2021 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+/* Copyright (C) 2021, 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
  * SPDX-License-Identifier: MIT
  */
 
-import { getPost, getAllPosts } from '@api'
+import styles from '@components/article.module.sass'
+import Date from '@components/Date'
+import Divider, { InnerDivider } from '@components/Divider'
+import Footer from '@components/Footer'
+import { getAllArticles, getArticle } from '@db/articles'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 
-import Footer from '@components/Footer'
-
-import { Heading, Text, Divider, Center, VStack, SimpleGrid, Box, Link } from '@chakra-ui/react'
-
-// TODO: also include an ID system.
-export default function Article (props) {
-  const date = new Date(props.date)
-  const formattedDate =
-        new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(date)
+export default function Article ({ article }) {
+  const pageTitle = `${article.title} ║ ÆOSRI`
 
   return (
     <>
       <Head>
-        <title>{props.slug}.org ⊙ Aeosri</title>
+        <title>{pageTitle}</title>
 
         <meta
           name='description'
-          content={props.description + ' ⊙ Aeosri'}
+          content={article.description}
         />
-
-        {/* MathJax */}
-        <script src='https://polyfill.io/v3/polyfill.min.js?features=es6' />
-        <script
-          id='MathJax-script' async
-          src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
-        />
-
-        {/* Prism */}
-        <link href='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-funky.css' rel='stylesheet' />
-        <script src='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/components/prism-core.min.js' />
-        <script src='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js' />
-
-        {/* Prism, Unescaped Markup */}
-        <link href='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/unescaped-markup/prism-unescaped-markup.css' rel='stylesheet' />
-        <script src='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/unescaped-markup/prism-unescaped-markup.min.js' />
-
-        {/* Prism, Normalize Whitespace */}
-        <script src='https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js' />
       </Head>
 
-      <SimpleGrid minChildWidth='120px' spacing='40px'>
-        <VStack mb='1em' align='stretch'>
-          <Text>
-            <time dateTime={date}>
-              {formattedDate}
-            </time>
-          </Text>
-
-          <Text textStyle='italic'>{props.description}</Text>
-
-          <Text textStyle='bold'>{props.tags}</Text>
-        </VStack>
-
-        <Center>
-          <Link href='/'>
+      <div className={styles.back}>
+        <Link href='/' passHref>
+          <a>
             <Image
               src='/static/placeholder.svg'
-              width='60'
-              height='40'
+              alt='ÆOSRI logo'
+              width='120'
+              height='80'
             />
-          </Link>
-        </Center>
-      </SimpleGrid>
+          </a>
+        </Link>
+      </div>
 
-      <article>
-        <Center>
-          <Heading as='h1' mt='1.5em' mb='0.8em' fontSize='2rem'>
-            {props.title}
-          </Heading>
-        </Center>
+      <article id={styles.article}>
+        <header className={styles.header}>
+          <h1 className={styles.title}>
+            {article.title}
+          </h1>
 
-        <Box
-          as='section'
-          w='90%'
-          maxW='600px'
-          m='0 auto 1.5em auto'
-          id='content'
-          dangerouslySetInnerHTML={{ __html: props.content }}
+          <h2 className={styles.description}>
+            {article.description ? article.description : null}
+          </h2>
+
+          <section className={styles.date}>
+            <span><Date dateString={article.publDate} /></span>
+
+            {article.updtDate
+              ? <span><small>Last updated on</small> <Date dateString={article.updtDate} /></span>
+              : null}
+          </section>
+        </header>
+
+        <InnerDivider color={styles.textColor} />
+
+        <main
+          id={styles.content}
+          dangerouslySetInnerHTML={{
+            __html: article.content
+          }}
         />
       </article>
 
-      <Divider mt='3' mb='3' />
+      <Divider color={styles.textColor} />
 
       <Footer />
     </>
   )
 }
 
-export async function getStaticProps (context) {
+export async function getStaticPaths () {
+  const articles = await getAllArticles()
+
+  const paths = articles.map(article => {
+    return {
+      params: { slug: article.slug }
+    }
+  })
+
   return {
-    props: await getPost(context.params.slug)
+    paths,
+    fallback: false
   }
 }
 
-export async function getStaticPaths () {
-  let paths = await getAllPosts()
+export async function getStaticProps ({ params }) {
+  let { publDate, updtDate, ...rest } = await getArticle(params.slug)
 
-  paths = paths.map(post => ({
-    params: { slug: post.slug }
-  }))
+  // Don’t show the update date if the article was published on the same date.
+  updtDate = publDate.toDateString() !== updtDate.toDateString() ? updtDate : null
+
+  const JSONArticle = {
+    publDate: publDate.toJSON(),
+    updtDate: updtDate ? updtDate.toJSON() : null,
+    ...rest
+  }
 
   return {
-    paths: paths,
-    fallback: false
+    props: {
+      article: JSONArticle
+    }
   }
 }

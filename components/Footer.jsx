@@ -1,48 +1,42 @@
-/* Copyright (C) 2021 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+/* Copyright (C) 2021, 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
  * SPDX-License-Identifier: MIT
  */
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-import { Text, Link, Stack, VStack } from '@chakra-ui/react'
-
-library.add(fab)
-library.add(fas)
+import styles from '@components/footer.module.sass'
 
 export default function Footer () {
   return (
-    <footer>
-      <VStack>
-        <Text fontSize='xs'>
-          Copyright &copy; 2021 Matheus Fernandes Bigolin
-        </Text>
+    <footer className={styles.footer}>
+      <p className={styles.copyright}>
+        &copy; 2022 Matheus Fernandes Bigolin
+      </p>
 
-        <Text fontSize='xs'>
-          The content of this site is licensed under the{' '}
-          <Link href='https://creativecommons.org/licenses/by-sa/4.0/'>
-            Creative Commons Attribution-ShareAlike 4.0 International (CC
-            BY-SA 4.0)
-          </Link>,
-          unless otherwise specified.
-        </Text>
+      <div className={styles.license}>
+        <a
+          href='https://creativecommons.org/licenses/by-nc-sa/4.0'
+          title='Content licensed under Creative Commons BY-NC-SA 4.0, unless otherwise specified on the page'
+        />
+      </div>
 
-        <Stack direction={['column', 'row']} spacing='2em'>
-          <Link href='https://github.com/mfrdbigolin'>
-            <FontAwesomeIcon icon={['fab', 'github']} />
-          </Link>
+      <section className={styles.social}>
+        <div title='mfrdbigolin' className={styles.icon}>
+          <a href='https://github.com/mfrdbigolin'>
+            <ion-icon name='logo-github' />
+          </a>
+        </div>
 
-          <Link href='mailto:mfrdrbigolin@disroot.org'>
-            <FontAwesomeIcon icon={['fas', 'at']} />
-          </Link>
+        <div title='mfrdrbigolin@disroot.org' className={styles.icon}>
+          <a href='mailto:mfrdrbigolin@disroot.org'>
+            <ion-icon name='mail' />
+          </a>
+        </div>
 
-          <Link href='https://twitter.com/mfrdbigolin'>
-            <FontAwesomeIcon icon={['fab', 'twitter']} />
-          </Link>
-        </Stack>
-      </VStack>
+        <div title='@mfrdbigolin' className={styles.icon}>
+          <a href='https://twitter.com/mfrdbigolin'>
+            <ion-icon name='logo-twitter' />
+          </a>
+        </div>
+      </section>
     </footer>
   )
 }

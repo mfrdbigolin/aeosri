@@ -1,0 +1,42 @@
+/* Copyright (C) 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+ * SPDX-License-Identifier: MIT
+ */
+
+@import "styles/variables"
+
+.wrapper
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+  padding-top: 32px
+  height: 100vh
+  max-height: 1080px
+
+.header
+  display: flex
+  flex-direction: column
+  align-items: center
+
+  margin-bottom: 1.15rem
+
+  .logo, h1
+    margin-bottom: 0.5rem
+
+  h1
+    letter-spacing: 10px
+
+  p
+    font-size: 1.25rem
+    font-style: italic
+
+.recent
+  margin-bottom: 1.15rem
+
+  h2
+    display: flex
+    justify-content: center
+    font-size: 1.25rem
+
+:export
+  textColor: $text-color

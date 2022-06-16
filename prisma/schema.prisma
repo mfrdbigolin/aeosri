@@ -1,0 +1,22 @@
+// Copyright (C) 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+// SPDX-License-Identifier: MIT
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+  shadowDatabaseUrl = env("DATABASE_URL")
+}
+
+model Article {
+  slug String @db.VarChar(48) @id
+  id Int @unique
+  publDate DateTime @default(now())
+  updtDate DateTime?
+  title String @db.VarChar(50) @unique
+  description String? @db.VarChar(320)
+  content String
+}

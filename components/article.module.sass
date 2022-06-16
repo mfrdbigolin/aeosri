@@ -1,0 +1,53 @@
+/* Copyright (C) 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+ * SPDX-License-Identifier: MIT
+ */
+
+@import "styles/variables"
+
+.back
+  display: flex
+  justify-content: center
+  padding-top: 18px
+  margin-bottom: 1.15rem
+
+.header
+  margin-bottom: 1rem
+
+.title
+  overflow-wrap: break-word
+
+.description
+  color: $secondary-color
+  font-weight: 400
+  font-size: 1.25rem
+  margin-bottom: 0.5rem
+
+.date
+  font-size: 0.9rem
+
+  span
+    margin-right: 20px
+
+#article
+  margin-bottom: 1.15rem
+
+#content
+  line-height: 1.5em
+  text-rendering: optimizeLegibility
+
+  p, pre, video, audio, img, ul, ol
+    margin-bottom: 1rem
+
+  h2
+    background-color: $text-color
+    color: $background-color
+    padding: 5px 20px 5px 20px
+    border-radius: $roundness
+    margin-bottom: 0.2rem
+
+  // Disable the link underline under the footnote label and the backref.
+  sup > a, section > ol > li > p > a
+    text-decoration: none
+
+:export
+  textColor: $text-color
