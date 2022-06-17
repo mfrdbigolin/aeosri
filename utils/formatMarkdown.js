@@ -2,7 +2,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { readFileSync } from 'fs'
 import rehypeKatex from 'rehype-katex'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeRaw from 'rehype-raw'
@@ -14,7 +13,7 @@ import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
 
-const solarizedLight = JSON.parse(readFileSync('./utils/solarized-light.json', 'utf-8'))
+import solarizedLight from '/public/solarized-light.json'
 
 const options = {
   theme: solarizedLight,

@@ -28,7 +28,7 @@ export default function Aeosri ({ articles }) {
         <header className={styles.header}>
           <section title='Just a temporary logo' className={styles.logo}>
             <Image
-              src='/static/placeholder.svg'
+              src='/placeholder.svg'
               alt='ÆOSRI logo'
               width='360'
               height='240'

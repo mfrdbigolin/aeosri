@@ -29,7 +29,7 @@ export default function Article ({ article }) {
         <Link href='/' passHref>
           <a>
             <Image
-              src='/static/placeholder.svg'
+              src='/placeholder.svg'
               alt='ÆOSRI logo'
               width='120'
               height='80'

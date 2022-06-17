@@ -14,7 +14,7 @@ export default class Aeosri extends Document {
     return (
       <Html lang='en'>
         <Head>
-          <link rel='icon' type='image/svg+xml' href='/static/favicon.svg' />
+          <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 
           {/* KaTeX */}
           <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css' integrity='sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn' crossOrigin='anonymous' />
