@@ -2,6 +2,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+import { readFileSync } from 'fs'
 import rehypeKatex from 'rehype-katex'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeRaw from 'rehype-raw'
@@ -13,8 +14,10 @@ import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
 
+const solarizedLight = JSON.parse(readFileSync('./utils/solarized-light.json', 'utf-8'))
+
 const options = {
-  theme: 'solarized-light',
+  theme: solarizedLight,
   onVisitLine (node) {
     // Prevent lines from collapsing in `display: grid` mode, and allow empty
     // lines to be copy/pasted.
