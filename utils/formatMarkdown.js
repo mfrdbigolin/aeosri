@@ -3,7 +3,7 @@
  */
 
 import rehypeKatex from 'rehype-katex'
-import rehypePrettyCode from 'rehype-pretty-code'
+// import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeRaw from 'rehype-raw'
 import rehypeStringify from 'rehype-stringify'
 import { defListHastHandlers, remarkDefinitionList } from 'remark-definition-list'
@@ -13,7 +13,7 @@ import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { unified } from 'unified'
 
-import solarizedLight from '/public/solarized-light.json'
+/* import solarizedLight from '/public/solarized-light.json'
 
 const options = {
   theme: solarizedLight,
@@ -24,7 +24,7 @@ const options = {
       node.children = [{ type: 'text', value: ' ' }]
     }
   }
-}
+} */
 
 export default async function formatMarkdown (content) {
   const file = await unified()
@@ -38,7 +38,7 @@ export default async function formatMarkdown (content) {
     })
     .use(rehypeRaw)
     .use(rehypeKatex)
-    .use(rehypePrettyCode, options)
+    // .use(rehypePrettyCode, options)
     .use(rehypeStringify)
     .process(content)
 
