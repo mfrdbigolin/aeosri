@@ -22,13 +22,24 @@ export default async function handler (req, res) {
   if (req.body.event === 'trigger-test') {
     console.log(`REPOP ${Date()}`)
 
-    repopulate()
+    await repopulate().then(async articles => {
+      try {
+        await res.unstable_revalidate('/')
+        articles.forEach(async ({ slug }) =>
+          await res.unstable_revalidate(`/${slug}`)
+        )
 
-    res.status(200).send('Successful repopulation')
+        res.status(200).send('Successful repopulation')
+      } catch (err) {
+        res.status(500).send('Unsuccessful revalidation')
+      }
+    })
+
     return
   }
 
   const entry = req.body.entry
+  let slug = entry.slug
   const event = {
     'entry.publish': 'PUB',
     'entry.update': 'UPDATE',
@@ -43,16 +54,26 @@ export default async function handler (req, res) {
 
     await createArticle(article)
 
-    res.status(201).end()
+    res.status(201)
   } else if (event === 'UPDATE') {
     const article = await formatArticle(entry)
+    slug = article.slug
 
     await updateArticle(article.id, article)
 
-    res.status(200).end()
+    res.status(200)
   } else if (['DEL', 'UNPUB'].includes(event)) {
-    await deleteArticle(entry.slug)
+    await deleteArticle(slug)
 
-    res.status(200).end()
+    res.status(200)
+  }
+
+  try {
+    await res.unstable_revalidate('/')
+    await res.unstable_revalidate(`/${slug}`)
+
+    res.send('Successful revalidation')
+  } catch (err) {
+    res.status(500).send('Unsuccessful revalidation')
   }
 }

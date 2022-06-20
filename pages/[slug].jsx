@@ -77,20 +77,26 @@ export default function Article ({ article }) {
 export async function getStaticPaths () {
   const articles = await getAllArticles()
 
-  const paths = articles.map(article => {
-    return {
-      params: { slug: article.slug }
-    }
-  })
+  const paths = articles.map(article => ({
+    params: { slug: article.slug }
+  }))
 
   return {
     paths,
-    fallback: false
+    fallback: 'blocking'
   }
 }
 
 export async function getStaticProps ({ params }) {
-  let { publDate, updtDate, ...rest } = await getArticle(params.slug)
+  const article = await getArticle(params.slug)
+
+  if (article === null) {
+    return {
+      notFound: true
+    }
+  }
+
+  let { publDate, updtDate, ...rest } = article
 
   // Don’t show the update date if the article was published on the same date.
   updtDate = publDate.toDateString() !== updtDate.toDateString() ? updtDate : null
@@ -104,6 +110,8 @@ export async function getStaticProps ({ params }) {
   return {
     props: {
       article: JSONArticle
-    }
+    },
+    // Security precaution for the edge cases not covered by on-demand revalidation.
+    revalidate: 30
   }
 }

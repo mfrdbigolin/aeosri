@@ -45,33 +45,48 @@ export async function deleteArticle (slug) {
 }
 
 export async function repopulate () {
-  https.get(`${process.env.CMS_URL}/api/articles`, res => {
-    const data = []
+  return new Promise((resolve, reject) => {
+    const options = {
+      host: process.env.CMS_URL,
+      path: '/api/articles',
+      method: 'GET',
+      port: '443'
+    }
 
-    res.on('data', chunk => {
-      data.push(chunk)
+    const req = https.request(options, res => {
+      const data = []
+
+      res.on('data', chunk => {
+        data.push(chunk)
+      })
+
+      res.on('end', async () => {
+        const articles = JSON.parse(Buffer.concat(data).toString()).data
+        const formattedArticles = []
+
+        for (const article of articles) {
+          const formattedArticle = await formatArticle(article)
+
+          formattedArticles.push(formattedArticle)
+        }
+
+        // Wipe all articles and recreate them in the database.
+        // TODO: If there is an upsertMany query in the future, use it.
+        await prisma.$transaction([
+          prisma.article.deleteMany({}),
+          prisma.article.createMany({
+            data: formattedArticles
+          })
+        ])
+
+        resolve(formattedArticles)
+      })
     })
 
-    res.on('end', async () => {
-      const articles = JSON.parse(Buffer.concat(data).toString()).data
-      const formattedArticles = []
-
-      for (const article of articles) {
-        const formattedArticle = await formatArticle(article)
-
-        formattedArticles.push(formattedArticle)
-      }
-
-      // Wipe all articles and recreate them in the database.
-      // TODO: If there is an upsertMany query in the future, use it.
-      await prisma.$transaction([
-        prisma.article.deleteMany({}),
-        prisma.article.createMany({
-          data: formattedArticles
-        })
-      ])
+    req.on('error', err => {
+      reject(new Error(`REPOP ERROR: ${err.message}`))
     })
-  }).on('error', err => {
-    console.log('REPOP ERROR: ', err.message)
+
+    req.end()
   })
 }
