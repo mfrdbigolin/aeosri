@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "standard --fix components/ db/ pages/ utils/"
   },
   "dependencies": {
     "@prisma/client": "^3.15.1",
@@ -29,8 +29,6 @@
     "unified": "^10.1.2"
   },
   "devDependencies": {
-    "eslint": "^8.17.0",
-    "eslint-config-next": "^12.1.6",
     "prisma": "^3.15.1",
     "standard": "^17.0.0"
   }
