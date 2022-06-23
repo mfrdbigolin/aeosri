@@ -2,6 +2,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+import { join } from 'path'
 import rehypeKatex from 'rehype-katex'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeRaw from 'rehype-raw'
@@ -11,21 +12,19 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
+import { getHighlighter } from 'shiki'
 import { unified } from 'unified'
 
-import { getHighlighter } from 'shiki'
-
-// Log a random message to force Shiki to be included in the payload.
-getHighlighter({
-  theme: 'solarized-light'
-}).then(highlighter => {
-  if (highlighter.codeToHtml('{ shiki: true }', { lang: 'js' })) {
-    console.log({ shiki: true })
-  }
-})
+const publicDir = join(process.cwd(), 'public')
+const themes = join(publicDir, 'themes/')
+const languages = join(publicDir, 'languages/')
 
 const options = {
   theme: 'solarized-light',
+  getHighlighter: ({ theme }) => getHighlighter({
+    paths: { themes, languages },
+    theme
+  }),
   onVisitLine (node) {
     // Prevent lines from collapsing in `display: grid` mode, and allow empty
     // lines to be copy/pasted.
