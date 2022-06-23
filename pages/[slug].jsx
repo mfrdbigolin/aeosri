@@ -21,7 +21,7 @@ export default function Article ({ article }) {
 
         <meta
           name='description'
-          content={article.description}
+          content={article.description ?? article.title}
         />
       </Head>
 
@@ -44,16 +44,19 @@ export default function Article ({ article }) {
             {article.title}
           </h1>
 
-          <h2 className={styles.description}>
-            {article.description ? article.description : null}
-          </h2>
+          {article.description &&
+            <h2 className={styles.description}>
+              {article.description}
+            </h2>}
 
           <section className={styles.date}>
             <span><Date dateString={article.publDate} /></span>
 
-            {article.updtDate
-              ? <span><small>Last updated on</small> <Date dateString={article.updtDate} /></span>
-              : null}
+            {article.updtDate &&
+              <span>
+                <small>Last updated on</small>{' '}
+                <Date dateString={article.updtDate} />
+              </span>}
           </section>
         </header>
 
@@ -103,7 +106,7 @@ export async function getStaticProps ({ params }) {
 
   const JSONArticle = {
     publDate: publDate.toJSON(),
-    updtDate: updtDate ? updtDate.toJSON() : null,
+    updtDate: updtDate && updtDate.toJSON(),
     ...rest
   }
 
