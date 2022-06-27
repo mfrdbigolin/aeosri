@@ -15,7 +15,8 @@ export function getAllArticles () {
     select: {
       slug: true,
       title: true,
-      publDate: true
+      publDate: true,
+      description: true
     },
     orderBy: {
       publDate: 'desc'

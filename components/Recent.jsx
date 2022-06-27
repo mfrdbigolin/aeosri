@@ -5,9 +5,11 @@
 import styles from '@components/recent.module.sass'
 import { differenceInDays } from 'date-fns'
 import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Recent ({ articles, numArticles = 5 }) {
   const feed = articles.slice(0, numArticles)
+  const [over, setOver] = useState(null)
 
   return (
     <nav>
@@ -20,14 +22,24 @@ export default function Recent ({ articles, numArticles = 5 }) {
             return (
               <li className={styles.post} key={i}>
                 <Link href={`/${article.slug}`}>
-                  <a>{article.title}</a>
+                  <a
+                    onMouseEnter={() => setOver(article.slug)}
+                    onMouseLeave={() => setOver(null)}
+                  >
+                    {article.title}
+                  </a>
                 </Link>
 
-                <span className={styles.dayBadge}>
+                <span title={publDate.toJSON()} className={styles.dayBadge}>
                   {daysElapsed <= 1
                     ? ['Today', 'Yesterday'][daysElapsed]
                     : `${daysElapsed} days ago`}
                 </span>
+
+                {over === article.slug &&
+                  <span className={styles.overlay}>
+                    {article.description}
+                  </span>}
               </li>
             )
           })
