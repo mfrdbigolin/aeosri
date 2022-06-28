@@ -24,8 +24,11 @@ body
   margin: 0 auto
   padding: 0 10px
 
+  scrollbar-gutter: stable both-edges
+  scrollbar-width: thin
+
   max-width: 680px
-  min-width: 360px
+  min-width: 400px
 
   color: $text-color
   background-color: $background-color
@@ -57,6 +60,9 @@ a
   &:hover
     color: $link-hover
     text-decoration: wavy
+
+ul, ol
+  list-style-position: inside
 
 code
   font-family: Source Code Pro, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace

@@ -46,15 +46,17 @@ export default function Aeosri ({ articles }) {
           <p>Welcome to ÆOSRI!</p>
         </header>
 
-        <Divider color={styles.textColor} />
+        <div className={styles.articles}>
+          <Divider color={styles.textColor} />
 
-        <section className={styles.recent}>
-          <h2>Recently published</h2>
+          <section className={styles.recent}>
+            <h2>Recently published</h2>
 
-          <Recent articles={articles} numArticles={NUMBER_RECENT_ARTICLES} />
-        </section>
+            <Recent articles={articles} numArticles={NUMBER_RECENT_ARTICLES} />
+          </section>
 
-        <Divider color={styles.textColor} />
+          <Divider color={styles.textColor} />
+        </div>
 
         <Footer />
       </div>
