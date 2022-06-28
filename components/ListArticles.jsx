@@ -2,13 +2,13 @@
  * SPDX-License-Identifier: MIT
  */
 
-import styles from '@components/recent.module.sass'
+import styles from '@components/listArticles.module.sass'
 import { differenceInDays } from 'date-fns'
 import Link from 'next/link'
 import { useState } from 'react'
 
-export default function Recent ({ articles, numArticles = 5 }) {
-  const feed = articles.slice(0, numArticles)
+export default function ListArticles ({ articles, start = 0, number = 5 }) {
+  const feed = articles.slice(start, number)
   const [over, setOver] = useState(null)
 
   return (

@@ -10,7 +10,7 @@
   height: 100vh
 
 .header, .articles
-  flex-grow: 1
+  flex-basis: calc(100%)
 
 .header
   display: flex
@@ -31,13 +31,29 @@
     font-size: 1.25rem
     font-style: italic
 
-.recent
-  margin-bottom: 1.15rem
-
+.articles
   h2
     display: flex
     justify-content: center
     font-size: 1.25rem
+
+.recent
+  margin-bottom: 1.15rem
+
+.moreArticles
+  display: block
+  margin-bottom: 1.15rem
+
+  button
+    display: flex
+    margin: 0 auto
+
+    color: $link-color
+    font-size: 2rem
+    font-weight: 600
+
+    &:hover
+      color: $link-hover
 
 :export
   textColor: $text-color

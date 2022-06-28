@@ -5,14 +5,15 @@
 import Divider from '@components/Divider'
 import Footer from '@components/Footer'
 import styles from '@components/index.module.sass'
-import Recent from '@components/Recent'
+import ListArticles from '@components/ListArticles'
 import { getAllArticles } from '@db/articles'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useState } from 'react'
 
-const NUMBER_RECENT_ARTICLES = 4
+export default function Aeosri ({ articles, NUMBER_RECENT_ARTICLES }) {
+  const [showMore, setShowMore] = useState(false)
 
-export default function Aeosri ({ articles }) {
   return (
     <>
       <Head>
@@ -50,9 +51,31 @@ export default function Aeosri ({ articles }) {
           <Divider color={styles.textColor} />
 
           <section className={styles.recent}>
-            <h2>Recently published</h2>
+            <h2>
+              {articles.length > NUMBER_RECENT_ARTICLES
+                ? 'Recently published'
+                : 'Articles published'}
+            </h2>
 
-            <Recent articles={articles} numArticles={NUMBER_RECENT_ARTICLES} />
+            <ListArticles articles={articles} number={NUMBER_RECENT_ARTICLES} />
+          </section>
+
+          <section className={styles.moreArticles}>
+            {articles.length > NUMBER_RECENT_ARTICLES &&
+              <button onClick={() => setShowMore(!showMore)}>
+                {!showMore ? '⊕' : '⊖'}
+              </button>}
+
+            {showMore &&
+              <>
+                <h2>More articles</h2>
+
+                <ListArticles
+                  articles={articles}
+                  start={NUMBER_RECENT_ARTICLES}
+                  number={Infinity}
+                />
+              </>}
           </section>
 
           <Divider color={styles.textColor} />
@@ -70,10 +93,12 @@ export async function getStaticProps () {
   const JSONArticles = articles.map(({ publDate, ...rest }) => {
     return { publDate: publDate.toJSON(), ...rest }
   })
+  const NUMBER_RECENT_ARTICLES = parseInt(process.env.NUMBER_RECENT_ARTICLES, 10) || 4
 
   return {
     props: {
-      articles: JSONArticles
+      articles: JSONArticles,
+      NUMBER_RECENT_ARTICLES
     }
   }
 }
