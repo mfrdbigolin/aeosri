@@ -36,7 +36,7 @@ export default function ListArticles ({ articles, start = 0, number = 5 }) {
                     : `${daysElapsed} days ago`}
                 </span>
 
-                {over === article.slug &&
+                {over === article.slug && article.description &&
                   <span className={styles.overlay}>
                     {article.description}
                   </span>}
