@@ -10,6 +10,7 @@ import { getAllArticles, getArticle } from '@db/articles'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import ScrollToTop from "react-scroll-to-top"
 
 export default function Article ({ article }) {
   const pageTitle = `${article.title} ║ ÆOSRI`
@@ -69,6 +70,11 @@ export default function Article ({ article }) {
           }}
         />
       </article>
+
+      <ScrollToTop
+        top='250'
+        color={styles.textColor}
+      />
 
       <Divider color={styles.textColor} />
 
