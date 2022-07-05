@@ -7,6 +7,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeRaw from 'rehype-raw'
 import rehypeStringify from 'rehype-stringify'
+import rehypeTitleFigure from 'rehype-title-figure'
 import { defListHastHandlers, remarkDefinitionList } from 'remark-definition-list'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
@@ -45,6 +46,7 @@ export default async function formatMarkdown (content) {
       handlers: Object.assign({}, defListHastHandlers)
     })
     .use(rehypeRaw)
+    .use(rehypeTitleFigure)
     .use(rehypeKatex)
     .use(rehypePrettyCode, options)
     .use(rehypeStringify)
