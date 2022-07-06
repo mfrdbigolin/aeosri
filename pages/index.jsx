@@ -4,12 +4,12 @@
 
 import Divider from '@components/Divider'
 import Footer from '@components/Footer'
-import styles from '@components/index.module.sass'
 import ListArticles from '@components/ListArticles'
 import { getAllArticles } from '@db/articles'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
+import styles from './index.module.sass'
 
 export default function Aeosri ({ articles, NUMBER_RECENT_ARTICLES }) {
   const [showMore, setShowMore] = useState(false)

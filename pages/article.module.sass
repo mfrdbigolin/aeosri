@@ -21,6 +21,7 @@
   font-weight: 400
   font-size: 1.25rem
   margin-bottom: 0.5rem
+  hyphens: auto
 
 .date
   font-size: 0.9rem
@@ -35,15 +36,19 @@
   line-height: 1.5em
   text-rendering: optimizeLegibility
 
-  p, pre, video, audio, figure, ul, ol
-    margin-bottom: 1rem
+  p, pre, ul, ol
+    margin-block: 0.5em
+    hyphens: auto
+
+  figure, video, audio
+    margin-block: 0.75em
 
   h2
     background-color: $text-color
     color: $background-color
     padding: 5px 20px 5px 20px
     border-radius: $roundness
-    margin-bottom: 0.2rem
+    margin-top: 1em
 
   // Disable the link underline under the footnote label and the backref.
   sup > a, section > ol > li > p > a

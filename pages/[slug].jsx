@@ -2,7 +2,6 @@
  * SPDX-License-Identifier: MIT
  */
 
-import styles from '@components/article.module.sass'
 import Date from '@components/Date'
 import Divider, { InnerDivider } from '@components/Divider'
 import Footer from '@components/Footer'
@@ -10,7 +9,8 @@ import { getAllArticles, getArticle } from '@db/articles'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import ScrollToTop from "react-scroll-to-top"
+import ScrollToTop from 'react-scroll-to-top'
+import styles from './article.module.sass'
 
 export default function Article ({ article }) {
   const pageTitle = `${article.title} ║ ÆOSRI`
