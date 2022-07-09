@@ -27,10 +27,6 @@ export default class Aeosri extends Document {
         <body>
           <Main />
           <NextScript />
-
-          {/* Ionicons */}
-          <script type='module' src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js' defer />
-          <script noModule src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js' defer />
         </body>
       </Html>
     )

@@ -3,6 +3,8 @@
  */
 
 import styles from '@components/footer.module.sass'
+import { BsFillEnvelopeFill } from 'react-icons/bs'
+import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 export default function Footer () {
   return (
@@ -21,19 +23,19 @@ export default function Footer () {
       <section className={styles.social}>
         <div title='mfrdbigolin' className={styles.icon}>
           <a href='https://github.com/mfrdbigolin'>
-            <ion-icon name='logo-github' />
+            <FaGithub />
           </a>
         </div>
 
         <div title='mfrdrbigolin@disroot.org' className={styles.icon}>
           <a href='mailto:mfrdrbigolin@disroot.org'>
-            <ion-icon name='mail' />
+            <BsFillEnvelopeFill />
           </a>
         </div>
 
         <div title='@mfrdbigolin' className={styles.icon}>
           <a href='https://twitter.com/mfrdbigolin'>
-            <ion-icon name='logo-twitter' />
+            <FaTwitter />
           </a>
         </div>
       </section>
