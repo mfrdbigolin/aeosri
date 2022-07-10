@@ -9,7 +9,7 @@ import { getAllArticles } from '@db/articles'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
-import { FaEllipsisH, FaEllipsisV, FaGitAlt } from 'react-icons/fa'
+import { FaGitAlt, FaSearchMinus, FaSearchPlus } from 'react-icons/fa'
 import styles from './index.module.sass'
 
 export default function Aeosri ({ articles, NUMBER_RECENT_ARTICLES }) {
@@ -63,8 +63,11 @@ export default function Aeosri ({ articles, NUMBER_RECENT_ARTICLES }) {
 
           <section className={styles.moreArticles}>
             {articles.length > NUMBER_RECENT_ARTICLES &&
-              <button onClick={() => setShowMore(!showMore)}>
-                {!showMore ? <FaEllipsisV /> : <FaEllipsisH /> }
+              <button
+                name='Show more articles'
+                onClick={() => setShowMore(!showMore)}
+              >
+                {!showMore ? <FaSearchPlus /> : <FaSearchMinus />}
               </button>}
 
             {showMore &&
