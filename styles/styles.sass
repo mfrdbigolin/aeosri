@@ -4,9 +4,6 @@
 
 @import "styles/variables"
 
-html
-  box-sizing: border-box
-
 *,
 *:before,
 *:after
@@ -16,6 +13,31 @@ html
   -webkit-box-sizing: border-box
   -moz-box-sizing: border-box
 
+html
+  box-sizing: border-box
+  overflow: overlay
+
+  scrollbar-gutter: stable
+  // For Gecko (Firefox).
+  scrollbar-color: #FF4F00 rgba(black, 15%)
+
+  // For Blink–WebKit browsers (Chrome, Edge, Safari, Opera, Brave, et c.).
+  &::-webkit-scrollbar
+    background-color: rgba(#FFFFFF, 0)
+    width: 15px
+
+    &:horizontal
+      display: none
+
+  &::-webkit-scrollbar-track
+    -webkit-box-shadow: inset 0 0 6px rgba(black, 30%)
+    background-clip: content-box
+    border: 4px solid transparent
+
+  &::-webkit-scrollbar-thumb
+    background: linear-gradient(0.87turn, #22170B, #DA2501, #E4016B)
+    border-radius: 8px
+
 body
   font-family: Fira Sans,Noto Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif
   -webkit-font-smoothing: antialiased
@@ -23,9 +45,6 @@ body
   min-height: 100vh
   margin: 0 auto
   padding: 0 10px
-
-  scrollbar-gutter: stable both-edges
-  scrollbar-width: thin
 
   max-width: 45em
   min-width: 400px
