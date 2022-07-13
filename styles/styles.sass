@@ -38,6 +38,14 @@ html
     background: linear-gradient(0.87turn, #22170B, #DA2501, #E4016B)
     border-radius: 8px
 
+::selection
+  // Apply some opacity to prevent elements from totally overlapping each other.
+  background-color: rgba($selection-background, 70%)
+  color: $selection-color
+
+img::selection
+  background-color: rgba($selection-background, 30%)
+
 body
   font-family: Fira Sans,Noto Sans,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif
   -webkit-font-smoothing: antialiased
