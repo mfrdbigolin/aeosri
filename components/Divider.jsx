@@ -4,7 +4,7 @@
 
 export default function Divider ({ color }) {
   return (
-    <div style={{
+    <hr style={{
       borderTop: `5px double ${color}`,
       marginBlock: '1rem'
     }}
@@ -14,9 +14,9 @@ export default function Divider ({ color }) {
 
 export function InnerDivider ({ color }) {
   return (
-    <div style={{
+    <hr style={{
       borderTop: `3px dashed ${color}`,
-      marginBottom: '0.75rem'
+      marginBlock: '0.75rem'
     }}
     />
   )
