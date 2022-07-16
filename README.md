@@ -19,9 +19,9 @@ Make sure to include the following enviroment variables in your `.env`:
 
 * `HOOK_SECRET`: a secret to authorize the webhook operation.
 
-* `CMS_URL`: the url to your CMS (preferably Strapi).
+* `CMS_URL`: the URL to your CMS (preferably Strapi).
 
-* `DATABASE_URL`: the url to your Postgres database.
+* `DATABASE_URL`: the URL to your Postgres database.
 
 ## Licensing
 
