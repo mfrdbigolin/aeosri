@@ -3,6 +3,7 @@
  */
 
 @import "styles/variables"
+@import "styles/functions"
 
 .back
   display: flex
@@ -53,9 +54,23 @@
     border-radius: $roundness
     margin-top: 1em
 
+  // Prevent the <sup> from disrupting the line’s height.
+  sup
+    line-height: 0
+
   // Disable the link underline under the footnote label and the backref.
   sup > a, section > ol > li > p > a
     text-decoration: none
+
+  // Footnotes.
+  section
+    ol
+      li
+        @include counter-size(30px)
+
+        &::before
+          content: counter(lst)
+          font-size: small
 
 :export
   textColor: $text-color
