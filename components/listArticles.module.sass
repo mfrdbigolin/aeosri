@@ -19,7 +19,11 @@
     color: $link-color
 
 .post
+  all: revert
   line-height: 1.5em
+
+  &::before
+    all: unset
 
 .dayBadge
   display: inline-block

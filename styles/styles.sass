@@ -3,6 +3,7 @@
  */
 
 @import "styles/variables"
+@import "styles/functions"
 
 *,
 *:before,
@@ -107,7 +108,31 @@ button
   cursor: pointer
 
 ul, ol
-  list-style-position: inside
+  list-style: none
+
+  li
+    @include counter-size(40px)
+
+    &::before
+      text-align: center
+      font-weight: 600
+      position: absolute
+
+ul > ::before
+  content: "■"
+
+ol
+  counter-reset: lst
+
+  li
+    counter-increment: lst
+
+    &::before
+      content: "(" counter(lst) ")"
+
+// For zero-indexed lists.
+ol[start='0']
+  counter-reset: lst -1
 
 code
   font-family: Source Code Pro, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace

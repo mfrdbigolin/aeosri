@@ -1,0 +1,11 @@
+/* Copyright (C) 2022 Matheus Fernandes Bigolin <mfrdrbigolin@disroot.org>
+ * SPDX-License-Identifier: MIT
+ */
+
+// Set the width of the numbered list counter.
+@mixin counter-size($width)
+  padding-left: $width
+
+  &::before
+    margin-left: -$width
+    width: $width
